@@ -50,3 +50,15 @@ jobs:
 
       - name: Run tests
         run: ./gradlew test
+
+      - name: Archive JUnit HTML report
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit-html
+          path: build/reports/tests/test
+
+      - name: Archive JUnit XML reports
+        uses: actions/upload-artifact@v2
+        with:
+          name: junit-xml
+          path: build/test-results/test/**.xml
