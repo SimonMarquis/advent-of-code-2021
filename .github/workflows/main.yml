@@ -7,7 +7,20 @@ on:
   workflow_dispatch:
 
 jobs:
+
+  gradleValidation:
+    name: Gradle Wrapper
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Fetch Sources
+        uses: actions/checkout@v2
+
+      - name: Gradle Wrapper Validation
+        uses: gradle/wrapper-validation-action@v1
+
   build:
+    needs: gradleValidation
     runs-on: ubuntu-latest
 
     steps:
