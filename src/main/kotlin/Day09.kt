@@ -1,4 +1,4 @@
-import kotlin.math.abs
+import Neighborhood.VonNeumann
 
 class Day09(raw: List<String>) {
 
@@ -25,16 +25,7 @@ class Day09(raw: List<String>) {
 
         operator fun get(x: Int, y: Int): Point = map[y][x]
 
-        private fun Point.neighbours(): Set<Point> = buildSet {
-            (-1..1).forEach { dy ->
-                (-1..1).forEach { dx ->
-                    when {
-                        abs(dx) == abs(dy) -> Unit
-                        else -> map.getOrNull(y + dy)?.getOrNull(x + dx)?.let(::add)
-                    }
-                }
-            }
-        }
+        private fun Point.neighbours() = map.neighboursOf(VonNeumann, x, y)
 
         fun Point.isLow() = neighbours().all { height < it.height }
 
