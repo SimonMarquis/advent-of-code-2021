@@ -3,7 +3,7 @@ import java.net.URI
 
 internal object Resources {
 
-    fun readText(fileName: String, delimiter: String = ""): String = readLines(fileName).joinToString(delimiter)
+    fun readText(fileName: String, delimiter: String = "\n"): String = readLines(fileName).joinToString(delimiter)
 
     fun readLines(fileName: String): List<String> = File(fileName.toResourceUri()).readLines()
 
